@@ -18,15 +18,24 @@ function RegistrationForm() {
     const [role, setRole] = useState("role");
 
     const getIsFormValid = () => {
-        // Implement this function
-        return true;
+        return (
+            firstName &&
+            password.value.length >= 8 &&
+            role !== "role"
+        );
     };
 
     const clearForm = () => {
         // Implement this function
+        setFirstName("");
+        setLastName("");
+        setPassword({ value: "", isTouched: false });
+        setEmail("");
+        setRole("Role");
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
         alert("Account created!");
         clearForm();
     };
@@ -37,32 +46,39 @@ function RegistrationForm() {
                 <fieldset>
                     <h2>Sign Up</h2>
                     <div className="Field">
-                        <label>
+                        <label htmlFor="firstName">
                             First name <sup>*</sup>
                         </label>
-                        <input placeholder="First name" />
+                        <input placeholder="First name" value={firstName} name="firstname" onChange={(e) => setFirstName(e.target.value)} />
                     </div>
                     <div className="Field">
-                        <label>Last name</label>
-                        <input placeholder="Last name" />
+                        <label htmlFor="lastname">Last name</label>
+                        <input name="lastname" value={lastName} placeholder="Last name" onChange={(e) => setLastName(e.target.value)} />
                     </div>
                     <div className="Field">
-                        <label>
+                        <label htmlFor="email">
                             Email address <sup>*</sup>
                         </label>
-                        <input placeholder="Email address" />
+                        <input name="email" value={email} placeholder="Email address" onChange={(e) => setEmail(e.target.value)} />
                     </div>
                     <div className="Field">
-                        <label>
+                        <label htmlFor="password">
                             Password <sup>*</sup>
                         </label>
-                        <input placeholder="Password" />
+                        <input value={password.value}
+                            type="password"
+                            onChange={(e) => {
+                                setPassword({ ...password, value: e.target.value });
+                            }}
+                            onBlur={() => {
+                                setPassword({ ...password, isTouched: true });
+                            }} />
                     </div>
                     <div className="Field">
-                        <label>
+                        <label htmlFor="role">
                             Role <sup>*</sup>
                         </label>
-                        <select>
+                        <select name="role" value={role} onChange={(e) => setRole(e.target.value)}>
                             <option value="role">Role</option>
                             <option value="individual">Individual</option>
                             <option value="business">Business</option>

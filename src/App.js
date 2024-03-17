@@ -1,4 +1,4 @@
-import "./App.css";
+// import "./App.css";
 import DessertsList from "./DessertsList";
 import ControlledForm from "./ControlledForm";
 import Feedback  from "./Feedback";
@@ -30,10 +30,10 @@ const desserts = [
 function App() {
   return (
     <div className="App">
-      <h2>List of low calorie desserts:</h2>
+      {/* <h2>List of low calorie desserts:</h2>
       <DessertsList data={desserts} />
       <ControlledForm />
-      <Feedback />
+      <Feedback /> */}
       <RegistrationForm />
     </div>
   );
